@@ -59,7 +59,3 @@ Inside the QEMU window:
     Reboot: after install, remove CD-ROM and reboot 
 
 
-![Made with Love](https://img.shields.io/badge/Made%20with-FreeBSD-blue?style=for-the-badge&logo=freebsd)
-![Powered by QEMU](https://img.shields.io/badge/Powered%20by-QEMU-ff69b4?style=for-the-badge&logo=qemu)
-
-
