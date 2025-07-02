@@ -1,0 +1,4 @@
+#ignore virtual environment files
+*.iso 
+#ignore the virtual storage
+*.qcow2
