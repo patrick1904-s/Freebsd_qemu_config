@@ -29,33 +29,35 @@ This repository helps you run **FreeBSD** in a **QEMU virtual machine** using **
 ```bash
 wget https://download.freebsd.org/releases/amd64/amd64/ISO-IMAGES/14.3/FreeBSD-14.3-RELEASE-amd64-disc1.iso.xz
 
- step 2: Run the script:
+##  step 2: Run the script:
     * Extract the iso from the .xz
     * creates a 20 GB virtual disk(freebsd.qcow2)
     * Launches the Freebsd installer with 4 GB RAM and 4CPUs
 
- step 3: Run the installation script
+##  step 3: Run the installation script
     * Run the setupBSD.sh
 ```bash
         chmod +x setupBSD.sh
         ./setupBSD.sh 
  
- step 4: Freebsd Installation Notes
+##  step 4: Freebsd Installation Notes
 
     FreeBSD Installation Notes
+ 
+---
 
-Inside the QEMU window:
+## Inside the QEMU window:
 
-    Keymap: default (US)
+    - Keymap: default (US)
 
-    Partitioning: Auto (UFS)
+    - Partitioning: Auto (UFS)
 
-    Enable Services: enable sshd and ntpd
+    - Enable Services: enable sshd and ntpd
 
-    Create User: add a user and give it wheel group (for su or sudo)
+    - Create User: add a user and give it wheel group (for su or sudo)
 
-    Root Password: set it securely
+    - Root Password: set it securely
 
-    Reboot: after install, remove CD-ROM and reboot 
+    - Reboot: after install, remove CD-ROM and reboot 
 
 
