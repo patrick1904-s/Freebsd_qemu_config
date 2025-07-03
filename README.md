@@ -1,63 +1,74 @@
-r 🐚 FreeBSD in QEMU with KVM on Linux
+# FreeBSD in  Qemu with KVM on Linux 
 
-This repository helps you run **FreeBSD** in a **QEMU virtual machine** using **KVM acceleration** on a Linux host. It's designed for beginners, developers, and researchers who want to experiment with FreeBSD in a safe and fast environment.
+FreeBSD in QEMU is a beginner-friendly project that demonstrates how to install, configure, and run FreeBSD 14.3 inside a QEMU virtual machine on a Linux host system. It provides a fully documented workflow including ISO setup, disk image creation, user management, network configuration, essential package installation, and post-install tools.
+
+This project is ideal for developers, system administrators, or hobbyists who want to:
+
+    Learn FreeBSD in a sandboxed virtual environment
+
+    Explore Unix-like systems without dual-booting
+
+    Build lightweight and secure development VMs
+
+    Automate FreeBSD VM setups with repeatable scripts
+
+    
+## ✨ Features
+
+   - Run FreeBSD 14.3 in QEMU on any Linux host
+
+   - Lightweight, scriptable VM environment
+
+   - Learn core Unix concepts (users, networking, services)
+
+   - Includes post-install setup (sudo, packages, SSH)
+
+   - Customizable CPU, RAM, and disk size
+
+   - Great for learning, testing, and problem-solvin
+## 🖥️ System Requirements
+
+To run FreeBSD smoothly inside a QEMU virtual machine on a Linux host, ensure your system meets the following minimum requirements:
 
 ---
 
-## 🚀 Features
+### ✅ Operating System
 
-- Run FreeBSD with QEMU + KVM
-- Automated setup script
-- SSH access from host to guest
-- Easy-to-understand and clean configuration
-- Works on Debian-based systems (e.g., Parrot OS, Ubuntu)
-
----
-
-## 📦 Requirements
-
-- Linux OS with:
-  - `qemu-system-x86`
-  - `xz-utils`
-  - `wget`
-- CPU with virtualization support (`kvm`)
+- Any modern Linux distribution:
+  - Debian
+  - Ubuntu
+  - Parrot OS
+  - Arch Linux
+  - Manjaro
+  - Others with QEMU support
 
 ---
 
-## 📥 Step 1: Download FreeBSD ISO
+### ⚙️ Required Packages
+
+Install the following packages based on your Linux distribution:
+
+#### For **Debian / Ubuntu / Parrot OS**:
 
 ```bash
-wget https://download.freebsd.org/releases/amd64/amd64/ISO-IMAGES/14.3/FreeBSD-14.3-RELEASE-amd64-disc1.iso.xz
+sudo apt update
+sudo apt install qemu-system-x86 qemu-utils wget xz-utils
+```
+### 🐧 For Arch / Manjaro
 
-##  step 2: Run the script:
-    * Extract the iso from the .xz
-    * creates a 20 GB virtual disk(freebsd.qcow2)
-    * Launches the Freebsd installer with 4 GB RAM and 4CPUs
+Install the required packages using `pacman`:
 
-##  step 3: Run the installation script
-    * Run the setupBSD.sh
 ```bash
-        chmod +x setupBSD.sh
-        ./setupBSD.sh 
- 
-##  step 4: Freebsd Installation Notes
+sudo pacman -S qemu wget xz
+```
+## 💡 Minimum System Specs
 
-    FreeBSD Installation Notes
- 
----
+To ensure smooth operation of FreeBSD inside QEMU, your system should meet the following minimum requirements:
 
-## Inside the QEMU window:
-
-    - Keymap: default (US)
-
-    - Partitioning: Auto (UFS)
-
-    - Enable Services: enable sshd and ntpd
-
-    - Create User: add a user and give it wheel group (for su or sudo)
-
-    - Root Password: set it securely
-
-    - Reboot: after install, remove CD-ROM and reboot 
-
+| 🔧 Component   | 💻 Minimum Recommended     |
+|---------------|----------------------------|
+| 🧠 RAM        | 4 GB                        |
+| 🧩 CPU        | 2 Cores                     |
+| 💽 Disk Space | 20 GB free                  |
+| 🌐 Internet   | Required (for ISO + packages) |
 
