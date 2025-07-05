@@ -72,3 +72,136 @@ To ensure smooth operation of FreeBSD inside QEMU, your system should meet the f
 | 💽 Disk Space | 20 GB free                  |
 | 🌐 Internet   | Required (for ISO + packages) |
 
+## 🛠️ Installation
+
+Follow these steps to set up and launch FreeBSD inside a QEMU virtual machine using the automated `setupBSD.sh` script.
+
+---
+
+### 🔃 Step 1: Clone the Repository
+
+```bash
+git clone https://github.com/yourusername/freebsd-qemu-setup.git
+cd freebsd-qemu-setup
+```
+---
+
+### ⚙️ Step 2: Make the Script Executable
+
+Before running the setup script, make it executable using the command below:
+
+```bash
+chmod +x setupBSD.sh
+```
+---
+
+### 🚀 Step 3: Run the Script
+
+```
+./setupBSD.sh
+```
+
+---
+
+## 📜 What This Script Does
+
+The `setupBSD.sh` script automates the complete initial setup of a FreeBSD virtual machine using QEMU on a Linux host.
+
+### ✅ Key Tasks Performed by the Script:
+
+- 🔍 **Fetches Available FreeBSD Versions**  
+  Automatically queries the official FreeBSD mirror and lists available versions for you to choose from.
+
+- 📥 **Downloads the Selected FreeBSD ISO**  
+  Downloads the `.iso.xz` file for the selected version from FreeBSD’s official servers.
+
+- 🗜️ **Extracts the ISO**  
+  Decompresses the downloaded `.xz` ISO file for use with QEMU.
+
+- 💽 **Creates a Virtual Disk Image**  
+  Generates a QEMU-compatible `.qcow2` virtual hard disk with a default size of 20 GB.
+
+- 🖥️ **Launches QEMU Installer**  
+  Boots the FreeBSD installer in a QEMU window with user-defined RAM and CPU settings.
+
+- 🔌 **Sets Up Network Port Forwarding**  
+  Forwards host port `2222` to the VM's port `22`, allowing SSH access to the VM from the host.
+
+### 🎯 Goal
+
+To make it extremely easy for users—especially beginners—to install and explore FreeBSD in a virtual machine without manual downloading, extracting, and setup steps.
+
+---
+
+## 🔁 Boot FreeBSD After Installation
+
+Once you've successfully installed FreeBSD using `setupBSD.sh`, you can boot into the system at any time using the included `bootBSD.sh` script.
+
+---
+
+### ▶️ Step-by-Step
+
+ Ensure you're in the project directory:
+
+```bash
+cd freebsd-qemu-setup
+```
+### ▶️ Make the Script Executable
+
+If the script is not already executable, run:
+
+```bash
+chmod +x bootBSD.sh
+```
+---
+### 🚀 Run the Script to Start Your FreeBSD VM
+
+To boot your FreeBSD virtual machine, execute the following command:
+
+```bash
+./bootBSD.sh
+```
+---
+### 🧠 What This Script Will Do
+
+The `bootBSD.sh` script is used to launch your FreeBSD virtual machine after it has been installed.
+
+When executed, the script:
+
+- ⚙️ Boots the FreeBSD OS directly from the `freebsd.qcow2` virtual disk (no ISO required)
+- 🧠 Allocates:
+  - 4 GB of RAM (`-m 4096`)
+  - 4 CPU cores (`-smp 4`)
+- 🚀 Enables KVM acceleration for better performance
+- 🌐 Configures user-mode networking with:
+  - Port forwarding from host `localhost:2222` to guest `22`
+  - Allowing easy SSH access to the VM:
+
+```bash
+ssh youruser@localhost -p 2222
+```
+---
+
+
+
+
+
+---
+
+## 🤝 Contribute to This Project
+
+This project was built to make virtual machine setup easier for everyone — especially beginners who want to explore FreeBSD in a safe and simple way using QEMU.
+
+If you believe in making virtual environments accessible and beginner-friendly:
+
+- ⭐ Star this repository
+- 🍴 Fork and improve the scripts
+- 🛠️ Add support for other operating systems (e.g., OpenBSD, NetBSD, Linux distros)
+- 🧑‍💻 Submit a pull request with improvements or bug fixes
+
+Let’s build a powerful tool for learning and automation — together. 💻✨
+---
+
+
+## 🐧 LINUX POWERED · BSD FLAVORED · CURIOSITY APPROVED
+
