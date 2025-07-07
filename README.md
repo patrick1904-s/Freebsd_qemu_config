@@ -81,7 +81,7 @@ Follow these steps to set up and launch FreeBSD inside a QEMU virtual machine us
 ### 🔃 Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/freebsd-qemu-setup.git
+git clone https://github.com/patrick1904-s/Freebsd_qemu_config.git
 cd freebsd-qemu-setup
 ```
 ---
