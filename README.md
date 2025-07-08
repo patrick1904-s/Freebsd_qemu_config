@@ -12,8 +12,6 @@ This project is ideal for developers, system administrators, or hobbyists who wa
 
     Automate FreeBSD VM setups with repeatable scripts
 
-    Smart ISO Detection & Reuse
-
     
 
     
@@ -28,6 +26,8 @@ This project is ideal for developers, system administrators, or hobbyists who wa
    - Includes post-install setup (sudo, packages, SSH)
 
    - Customizable CPU, RAM, and disk size
+
+   - Smart ISO Detection & Reuse
 ## 🖥️ System Requirements
 
 To run FreeBSD smoothly inside a QEMU virtual machine on a Linux host, ensure your system meets the following minimum requirements:
