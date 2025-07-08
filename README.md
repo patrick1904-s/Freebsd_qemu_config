@@ -12,6 +12,10 @@ This project is ideal for developers, system administrators, or hobbyists who wa
 
     Automate FreeBSD VM setups with repeatable scripts
 
+    Smart ISO Detection & Reuse
+
+    
+
     
 ## ✨ Features
 
@@ -24,8 +28,6 @@ This project is ideal for developers, system administrators, or hobbyists who wa
    - Includes post-install setup (sudo, packages, SSH)
 
    - Customizable CPU, RAM, and disk size
-
-   - Great for learning, testing, and problem-solvin
 ## 🖥️ System Requirements
 
 To run FreeBSD smoothly inside a QEMU virtual machine on a Linux host, ensure your system meets the following minimum requirements:
@@ -81,7 +83,7 @@ Follow these steps to set up and launch FreeBSD inside a QEMU virtual machine us
 ### 🔃 Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/patrick1904-s/Freebsd_qemu_config.git
+git clone https://github.com/yourusername/freebsd-qemu-setup.git
 cd freebsd-qemu-setup
 ```
 ---
