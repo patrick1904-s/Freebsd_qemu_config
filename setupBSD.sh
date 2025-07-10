@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ============================================
-# 🧠 FreeBSD QEMU Setup Script – SMART ISO SCAN
+# 🧠 FreeBSD QEMU Setup Script – SMART ISO SCAN & DEP FIX
 # ============================================
 
 # ---------- CONFIGURATION ----------
@@ -15,34 +15,54 @@ mkdir -p "$ISO_DIR"
 # -----------------------------------
 
 echo "=========================================="
-echo " 🔧 FreeBSD QEMU Setup"
+echo " 🔧 FreeBSD QEMU Setup with Auto-Installer"
 echo "=========================================="
 
-# ---------- TOOL CHECK ----------
+# ---------- REQUIRED TOOLS ----------
 REQUIRED_TOOLS=("curl" "wget" "xz" "qemu-img" "qemu-system-x86_64")
-echo "🔍 Checking required dependencies..."
 MISSING_TOOLS=()
+echo "🔍 Checking for required tools..."
 
 for tool in "${REQUIRED_TOOLS[@]}"; do
-    if ! command -v "$tool" >/dev/null 2>&1; then
+    if ! command -v "$tool" &>/dev/null; then
         MISSING_TOOLS+=("$tool")
     fi
 done
 
+# ---------- AUTO-INSTALL IF MISSING ----------
 if [ ${#MISSING_TOOLS[@]} -ne 0 ]; then
-    echo "❌ The following tools are missing:"
-    for tool in "${MISSING_TOOLS[@]}"; do
-        echo "   - $tool"
-    done
-    echo ""
-    echo "💡 Please install the missing tools before continuing."
-    echo "📖 Refer to the installation instructions in the README:"
-    echo "   https://github.com/<your-username>/<your-repo>#installation"
-    echo ""
-    exit 1
-fi
+    echo "⚠️ Missing dependencies: ${MISSING_TOOLS[*]}"
+    
+    # Check internet connection
+    echo -n "🌐 Checking internet... "
+    if ping -c 1 google.com &>/dev/null; then
+        echo "connected."
+    else
+        echo "❌ No internet connection. Cannot auto-install packages."
+        echo "🛑 Please install these manually: ${MISSING_TOOLS[*]}"
+        # Continue workflow anyway
+        MISSING_TOOLS=()
+    fi
 
-echo "[✔] All required tools found."
+    echo "📦 Attempting to install missing packages..."
+
+    # Detect package manager
+    if command -v apt &>/dev/null; then
+        sudo apt update
+        sudo apt install -y "${MISSING_TOOLS[@]}"
+    elif command -v dnf &>/dev/null; then
+        sudo dnf install -y "${MISSING_TOOLS[@]}"
+    elif command -v pacman &>/dev/null; then
+        sudo pacman -Sy --noconfirm "${MISSING_TOOLS[@]}"
+    elif command -v pkg &>/dev/null; then
+        sudo pkg install -y "${MISSING_TOOLS[@]}"
+    else
+        echo "❌ No supported package manager found (apt, dnf, pacman, pkg)."
+        echo "🛠️ Please install tools manually: ${MISSING_TOOLS[*]}"
+    fi
+else
+    echo "[✔] All required tools found."
+fi
 # ----------------------------------
 
 # ---------- SCAN FOR EXISTING ISO ----------
