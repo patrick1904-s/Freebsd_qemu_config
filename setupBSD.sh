@@ -12,6 +12,38 @@ CPUS="4"
 BASE_URL="https://download.freebsd.org/ftp/releases/ISO-IMAGES"
 ISO_DIR="isos"
 mkdir -p "$ISO_DIR"
+# ---------- RESOURCE CUSTOMIZATION ----------
+echo ""
+echo " Default Resources:"
+echo "    ➤ CPUs : $CPUS"
+echo "    ➤ RAM  : $RAM MB"
+echo "    ➤ Disk : $DISK_SIZE"
+
+read -p "✨ Do you want to customize CPU/RAM/Disk? (y/N): " CUSTOMIZE
+CUSTOMIZE=${CUSTOMIZE,,}  # Convert to lowercase
+
+if [[ "$CUSTOMIZE" == "y" ]]; then
+    read -p "Enter CPU cores (default: $CPUS): " USER_CPUS
+    if [[ "$USER_CPUS" =~ ^[0-9]+$ ]]; then
+        CPUS="$USER_CPUS"
+    fi
+
+    read -p "Enter RAM in MB (default: $RAM): " USER_RAM
+    if [[ "$USER_RAM" =~ ^[0-9]+$ ]]; then
+        RAM="$USER_RAM"
+    fi
+
+    read -p "Enter disk size (e.g., 25G) (default: $DISK_SIZE): " USER_DISK
+    if [[ "$USER_DISK" =~ ^[0-9]+[GgMm]?$ ]]; then
+        DISK_SIZE="$USER_DISK"
+    fi
+fi
+echo ""
+echo "🚀 Final Configuration:"
+echo "    ➤ CPUs : $CPUS"
+echo "    ➤ RAM  : $RAM MB"
+echo "    ➤ Disk : $DISK_SIZE"
+
 # -----------------------------------
 
 echo "=========================================="
