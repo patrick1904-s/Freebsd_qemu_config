@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# ============================================
-# 🧠 FreeBSD QEMU Setup Script – SMART ISO SCAN & DEP FIX
-# ============================================
+echo "=============================="
+echo "🧠 FreeBSD QEMU Setup Script "
+echo " ============================="
 
 # ---------- CONFIGURATION ----------
 DISK_FILE="freebsd.qcow2"
