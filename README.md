@@ -4,16 +4,24 @@ FreeBSD in QEMU is a beginner-friendly project that demonstrates how to install,
 
 This project is ideal for developers, system administrators, or hobbyists who want to:
 
-    Learn FreeBSD in a sandboxed virtual environment
+- Learn FreeBSD in a sandboxed virtual environment
 
-    Explore Unix-like systems without dual-booting
+- Explore Unix-like systems without dual-booting
 
-    Build lightweight and secure development VMs
+- Build lightweight and secure development VMs
 
-    Automate FreeBSD VM setups with repeatable scripts
+- Automate FreeBSD VM setups with repeatable scripts
+
+- Smart ISO Detection & Reuse
+---
+
+## 📋 To-Do List
+
+- [ ] Create a TUI 
+- [ ] create a Declarative Script
 
     
-
+---
     
 ## ✨ Features
 
@@ -26,54 +34,42 @@ This project is ideal for developers, system administrators, or hobbyists who wa
    - Includes post-install setup (sudo, packages, SSH)
 
    - Customizable CPU, RAM, and disk size
+# 🧠 FreeBSD QEMU Setup Script
 
-   - Smart ISO Detection & Reuse
-## 🖥️ System Requirements
-
-To run FreeBSD smoothly inside a QEMU virtual machine on a Linux host, ensure your system meets the following minimum requirements:
+A fully interactive Bash script to automate the setup of a FreeBSD virtual machine using QEMU. This tool ensures a clean environment by handling dependency checks, ISO downloads, disk creation, and VM launching — all with a friendly TUI (Terminal User Interface).
 
 ---
+
+## 🖥️ System Requirements
+
+To run FreeBSD inside QEMU on a Linux host, your system should meet the following requirements:
 
 ### ✅ Operating System
 
 - Any modern Linux distribution:
-  - Debian
-  - Ubuntu
-  - Parrot OS
-  - Arch Linux
-  - Manjaro
+  - Debian / Ubuntu / Parrot OS
+  - Arch Linux / Manjaro
+  - Fedora / RHEL
   - Others with QEMU support
 
 ---
+### The script will automatically checks the dependencies are installed or not if it is not installed the script will setup the dependencies automatically
+---
+## ⚙️ Required Packages
 
-### ⚙️ Required Packages
+These dependencies will be checked and auto-installed by the script (if possible):
 
-Install the following packages based on your Linux distribution:
+- `qemu-system-x86_64`
+- `qemu-utils`
+- `curl` or `wget`
+- `xz-utils`
 
-#### For **Debian / Ubuntu / Parrot OS**:
+### 🧩 Manual Installation (if needed)
 
+#### Debian / Ubuntu / Parrot OS:
 ```bash
 sudo apt update
 sudo apt install qemu-system-x86 qemu-utils wget xz-utils
-```
-### 🐧 For Arch / Manjaro
-
-Install the required packages using `pacman`:
-
-```bash
-sudo pacman -S qemu wget xz
-```
-## 💡 Minimum System Specs
-
-To ensure smooth operation of FreeBSD inside QEMU, your system should meet the following minimum requirements:
-
-| 🔧 Component   | 💻 Minimum Recommended     |
-|---------------|----------------------------|
-| 🧠 RAM        | 4 GB                        |
-| 🧩 CPU        | 2 Cores                     |
-| 💽 Disk Space | 20 GB free                  |
-| 🌐 Internet   | Required (for ISO + packages) |
-
 ## 🛠️ Installation
 
 Follow these steps to set up and launch FreeBSD inside a QEMU virtual machine using the automated `setupBSD.sh` script.
@@ -110,6 +106,9 @@ chmod +x setupBSD.sh
 The `setupBSD.sh` script automates the complete initial setup of a FreeBSD virtual machine using QEMU on a Linux host.
 
 ### ✅ Key Tasks Performed by the Script:
+
+-  **Setup The Dependencies**  
+             It checks Does the required package are present in the machine or in the shell if the package are not present it will automatically install the package from the required package of that distro.
 
 - 🔍 **Fetches Available FreeBSD Versions**  
   Automatically queries the official FreeBSD mirror and lists available versions for you to choose from.
