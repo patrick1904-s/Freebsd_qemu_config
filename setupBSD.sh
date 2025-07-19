@@ -199,7 +199,68 @@ if [ ! -f "$DISK_FILE" ]; then
 else
     echo "[✔] Virtual disk already exists: $DISK_FILE"
 fi
+#---------Verifiaction of KVM is presernt or not ---------------
+#!/bin/bash
 
+echo "🔍 Checking KVM support..."
+
+# Check if CPU supports virtualization
+if grep -E -c '(vmx|svm)' /proc/cpuinfo >/dev/null; then
+    echo "✅ CPU supports virtualization."
+else
+    echo "❌ Your CPU does not support virtualization. Exiting."
+    exit 1
+fi
+
+# Check if /dev/kvm exists
+if [ -e /dev/kvm ]; then
+    echo "✅ /dev/kvm exists. KVM is enabled."
+else
+    echo "⚠️ /dev/kvm not found. Checking kernel modules..."
+    
+    # Check for loaded kernel modules
+    if lsmod | grep -q kvm; then
+        echo "✅ KVM kernel modules are loaded, but /dev/kvm is missing."
+    else
+        echo "❌ KVM kernel modules are not loaded."
+        echo ""
+        echo "👉 Trying to load KVM modules now..."
+
+        # Try to load the appropriate module
+        if grep -q vmx /proc/cpuinfo; then
+            sudo modprobe kvm_intel
+        elif grep -q svm /proc/cpuinfo; then
+            sudo modprobe kvm_amd
+        fi
+
+        sleep 2
+
+        if lsmod | grep -q kvm; then
+            echo "✅ Modules loaded successfully."
+        else
+            echo "❌ Failed to load KVM modules. Possible reasons:"
+            echo "   - Virtualization is disabled in BIOS/UEFI"
+            echo "   - Running in a restricted environment (e.g., WSL or container)"
+            echo ""
+            echo "💡 Please reboot into BIOS/UEFI and enable:"
+            echo "   - Intel VT-x or AMD-V"
+            echo "   - SVM Mode (for AMD)"
+            echo ""
+            exit 1
+        fi
+    fi
+
+    # Check again for /dev/kvm
+    if [ -e /dev/kvm ]; then
+        echo " /dev/kvm is now available. KVM is enabled!"
+    else
+        echo " /dev/kvm is still missing. KVM not usable."
+        echo "Please make sure virtualization is enabled in your BIOS/UEFI."
+        exit 1
+    fi
+fi
+
+echo "🎉 KVM is fully enabled and ready to use."
 # ---------- LAUNCH VM ----------
 echo ""
 echo "[🚀] Launching FreeBSD installer with:"
