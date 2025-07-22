@@ -19,9 +19,8 @@ This project is ideal for developers, system administrators, or hobbyists who wa
 
 - [ ] Create a TUI 
 - [ ] create a Declarative Script
-
     
----
+
     
 ## ✨ Features
 
@@ -79,7 +78,7 @@ Follow these steps to set up and launch FreeBSD inside a QEMU virtual machine us
 ### 🔃 Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/freebsd-qemu-setup.git
+git clone https://github.com/patrick1904-s/Freebsd_qemu_config
 cd freebsd-qemu-setup
 ```
 ---
@@ -124,6 +123,9 @@ The `setupBSD.sh` script automates the complete initial setup of a FreeBSD virtu
 
 - 🖥️ **Launches QEMU Installer**  
   Boots the FreeBSD installer in a QEMU window with user-defined RAM and CPU settings.
+
+- **Enables KVM**   
+             Enables KVM if it is present in the system , If KVM is not installed or Available it Downloads and Enables that Feature.
 
 - 🔌 **Sets Up Network Port Forwarding**  
   Forwards host port `2222` to the VM's port `22`, allowing SSH access to the VM from the host.
