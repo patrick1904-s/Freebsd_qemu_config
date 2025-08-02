@@ -154,7 +154,7 @@ cd freebsd-qemu-setup
 If the script is not already executable, run:
 
 ```bash
-chmod +x bootBSD.sh
+chmod +x setupBSD.sh
 ```
 ---
 ### 🚀 Run the Script to Start Your FreeBSD VM
@@ -162,7 +162,7 @@ chmod +x bootBSD.sh
 To boot your FreeBSD virtual machine, execute the following command:
 
 ```bash
-./bootBSD.sh
+./setupBSD.sh
 ```
 ---
 ### 🧠 What This Script Will Do
