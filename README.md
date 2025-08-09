@@ -33,6 +33,8 @@ This project is ideal for developers, system administrators, or hobbyists who wa
    - Includes post-install setup (sudo, packages, SSH)
 
    - Customizable CPU, RAM, and disk size
+
+   - Verifies the checksum of the downloaded file against the existing checksum. 
 # 🧠 FreeBSD QEMU Setup Script
 
 A fully interactive Bash script to automate the setup of a FreeBSD virtual machine using QEMU. This tool ensures a clean environment by handling dependency checks, ISO downloads, disk creation, and VM launching — all with a friendly TUI (Terminal User Interface).
